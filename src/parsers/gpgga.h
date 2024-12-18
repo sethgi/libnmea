@@ -8,7 +8,7 @@
 
 typedef struct {
 	nmea_s base;
-	struct tm time;
+	struct timespec time;
 	nmea_position longitude;
 	nmea_position latitude;
 	int n_satellites;

@@ -9,6 +9,7 @@
 typedef enum {
 	NMEA_UNKNOWN,
 	NMEA_GPGGA,
+	NMEA_GNGGA,
 	NMEA_GPGLL,
 	NMEA_GPGSA,
 	NMEA_GPGSV,
@@ -24,6 +25,13 @@ typedef char nmea_cardinal_t;
 #define NMEA_CARDINAL_DIR_SOUTH		(nmea_cardinal_t) 'S'
 #define NMEA_CARDINAL_DIR_WEST		(nmea_cardinal_t) 'W'
 #define NMEA_CARDINAL_DIR_UNKNOWN	(nmea_cardinal_t) '\0'
+
+typedef struct {
+	int year;
+	unsigned int month;
+	unsigned int day;
+	struct timespec time;
+} nmea_time_t;
 
 /**
  * NMEA data base struct
@@ -43,7 +51,7 @@ typedef struct {
 } nmea_position;
 
 /* NMEA sentence max length, including \r\n (chars) */
-#define NMEA_MAX_LENGTH		82
+#define NMEA_MAX_LENGTH		144
 
 /* NMEA sentence endings, should be \r\n according the NMEA 0183 standard */
 #define NMEA_END_CHAR_1		'\r'

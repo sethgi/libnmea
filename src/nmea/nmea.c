@@ -1,6 +1,7 @@
 #include "nmea.h"
 #include "parser.h"
 #include "parser_types.h"
+#include <stdio.h>
 
 #define ARRAY_LENGTH(a) (sizeof a / sizeof (a[0]))
 

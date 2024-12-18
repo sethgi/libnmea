@@ -1,5 +1,7 @@
 #include "parse.h"
 
+#include <stdio.h>
+
 #define TM_YEAR_START 1900
 #define RMC_YEAR_START 2000
 
@@ -75,6 +77,24 @@ nmea_time_parse(char *s, struct tm *time)
 	if (*rv == '.') {
 		/* TODO There is a sub-second field. */
 	}
+
+	return 0;
+}
+
+int
+nmea_time_fractional_parse(char *nmea_time, struct timespec* time)
+{
+  if (!nmea_time) return -1;
+
+  int hh = 0, mm = 0;
+  float ss = 0;
+
+  // Parse hhmmss.ss from the NMEA string
+  sscanf(nmea_time, "%2d%2d%f", &hh, &mm, &ss);
+
+  // Calculate seconds and nanoseconds
+  time->tv_sec = hh * 3600 + mm * 60 + (int)ss;
+  time->tv_nsec = (ss - (int)ss) * 1e9;
 
 	return 0;
 }

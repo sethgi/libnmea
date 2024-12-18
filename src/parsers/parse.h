@@ -53,6 +53,8 @@ nmea_cardinal_t nmea_cardinal_direction_parse(char *s);
  */
 int nmea_time_parse(char *s, struct tm *time);
 
+int nmea_time_fractional_parse(char* s, struct timespec* time);
+
 /**
  * Parse date from a string
  *

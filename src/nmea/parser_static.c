@@ -1,5 +1,6 @@
 #include "nmea.h"
 #include "parser.h"
+#include <stdio.h>
 
 #define DECLARE_PARSER_API(modname) \
 	extern int nmea_##modname##_init(nmea_parser_s *parser); \

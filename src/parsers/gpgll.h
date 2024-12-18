@@ -10,7 +10,7 @@ typedef struct {
 	nmea_s base;
 	nmea_position longitude;
 	nmea_position latitude;
-	struct tm time;
+	struct timespec time;
 } nmea_gpgll_s;
 
 /* Value indexes */

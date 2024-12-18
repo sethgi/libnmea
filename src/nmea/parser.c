@@ -2,6 +2,7 @@
 #include <dirent.h>
 #include <dlfcn.h>
 #include "parser.h"
+#include <stdio.h>
 
 int n_parsers;
 nmea_parser_module_s **parsers;
@@ -14,7 +15,9 @@ nmea_parser_module_s **parsers;
 #define PARSER_PATH "/usr/lib/nmea/"
 #endif
 
+#ifndef FILENAME_MAX
 #define FILENAME_MAX 255
+#endif 
 
 static int
 _get_so_files(const char *path, char **files)
@@ -216,6 +219,7 @@ nmea_get_parser_by_sentence(const char *sentence)
 
 	for (i = 0; i < n_parsers; i++) {
 		parser = parsers[i];
+
 		/* compare only the sentence ID, ignore the talker ID */
 		if (0 == strncmp(sentence + 3, parser->parser.type_word + 2, NMEA_PREFIX_LENGTH - 2)) {
 			return parser;

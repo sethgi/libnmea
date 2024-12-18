@@ -47,7 +47,7 @@ parse(nmea_parser_s *parser, char *value, int val_index)
 	switch (val_index) {
 	case NMEA_GPGGA_TIME:
 		/* Parse time */
-		if (-1 == nmea_time_parse(value, &data->time)) {
+		if (-1 == nmea_time_fractional_parse(value, &data->time)) {
 			return -1;
 		}
 		break;
